@@ -10,16 +10,17 @@
     "build": "qwik build",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
-    "build.server": "qwik check-client src dist && vite build -c adapters/fastify/vite.config.ts",
+    "build.server": "qwik check-client src dist && vite build -c adapters/cloudflare-workers/vite.config.ts",
     "build.types": "tsc --incremental --noEmit",
-    "deploy": "echo 'Run \"npm run qwik add\" to install a server adapter'",
+    "cf-typegen": "wrangler types",
+    "deploy": "wrangler deploy",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
     "fmt": "prettier --write .",
     "fmt.check": "prettier --check .",
     "lint": "eslint \"src/**/*.ts*\"",
     "preview": "qwik build preview && vite preview --open",
-    "serve": "node server/entry.fastify",
+    "serve": "wrangler dev",
     "start": "vite --open --mode ssr",
     "qwik": "qwik"
   },
@@ -27,6 +28,7 @@
     "@builder.io/qwik": "^1.19.0",
     "@builder.io/qwik-city": "^1.19.0",
     "@builder.io/qwik-react": "0.5.0",
+    "@cloudflare/workers-types": "^5.20261112.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@eslint/js": "^9",
@@ -50,7 +52,8 @@
     "typescript-plugin-css-modules": "latest",
     "undici": "*",
     "vite": "7.3.1",
-    "vite-tsconfig-paths": "^4.2.1"
+    "vite-tsconfig-paths": "^4.2.1",
+    "wrangler": "^4.161.0"
   },
   "dependencies": {
     "@fastify/compress": "^6.2.1",

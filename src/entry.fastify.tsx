@@ -14,9 +14,8 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import FastifyQwik from "./plugins/fastify-qwik";
 
-declare global {
-  type QwikCityPlatform = PlatformNode;
-}
+// QwikCityPlatform is declared globally in entry.cloudflare-pages.tsx (the deployed target).
+export type FastifyPlatform = PlatformNode;
 
 // Directories where the static assets are located
 const distDir = join(fileURLToPath(import.meta.url), "..", "..", "dist");
